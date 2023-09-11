@@ -1,0 +1,10 @@
+AD 1 100
+IS 4 1 A
+IS 4 2 B
+IS 4 3 =2
+IS 4 4 =3
+IS 1 1 2
+IS 2 1 A
+A DL 1
+B DL 2
+AD 2
