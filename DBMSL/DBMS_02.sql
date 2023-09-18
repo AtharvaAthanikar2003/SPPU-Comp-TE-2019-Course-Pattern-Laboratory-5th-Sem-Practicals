@@ -1,5 +1,5 @@
 /*
-DBMS Exp No.2
+DBMS Exp No.2 
 Activity to be Submitted by Students
 (Insert, Select, Update, Delete, operators, functions, setoperator, all constraints, view, index, synonym, sequence) 
 Create following relations and excecute the queries given below.
