@@ -1,5 +1,5 @@
 /*
-DBMS Exp No.3
+DBMS Exp No.3 
 Activity to be Submitted by Students
 Design SQL queries for suitable database application using SQL DML statements: 
 all types of Join, Sub-Query and View.
