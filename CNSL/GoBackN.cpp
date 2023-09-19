@@ -13,7 +13,7 @@ void gobackN(int nf,int fpers){
             else{
                 if(r){               
                  cout<<"Transmitting Frame No."<<i<<"...."<<endl;
-                 cout<<"Acknowledgement:- Success"<<endl<<endl;
+                 cout<<"Acknowledgement :- Success"<<endl<<endl;
                  n++;
                  cf=i;       
                 }            
@@ -29,9 +29,9 @@ void gobackN(int nf,int fpers){
 int main(){
     int frame_no,fs;
     cout<<"---------SIMULATION FOR 'GO-BACK-N' ARQ PROTOCOL---------"<<endl<<endl;
-    cout<<"Enter The No.of Frames-:";
+    cout<<"Enter The No.of Frames :- ";
     cin>>frame_no;
-    cout<<"Enter The Windows Length-:";
+    cout<<"Enter The Windows Length :- ";
     cin>>fs;
     cout<<endl;
     gobackN(frame_no,fs);
