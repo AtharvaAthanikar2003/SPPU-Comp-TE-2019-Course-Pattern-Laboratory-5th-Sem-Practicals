@@ -1,5 +1,5 @@
 /*
-DBMS Lab Exp No.7 :- Database Trigger (All Types: Row level and Statement level triggers, Before and After Triggers).
+DBMS Exp No.7 :- Database Trigger (All Types: Row level and Statement level triggers, Before and After Triggers).
 Write a database trigger on Library table. The System should keep track of the records that are being updated or deleted. 
 The old value of updated or deleted records should be added in Library_Audit table.
 */
