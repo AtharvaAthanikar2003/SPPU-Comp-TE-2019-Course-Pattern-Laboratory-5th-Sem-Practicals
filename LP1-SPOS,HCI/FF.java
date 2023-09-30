@@ -1,3 +1,5 @@
+// SPOS Lab Exp No.8 (Memory Management)
+
 import java.util.Scanner;
 public class FF {
     static int job[];
