@@ -184,6 +184,7 @@ public class MemoryManagement {
                     System.out.println("Invalid choice. Please try again.");
             }
         } while (choice != 0);
+
         scanner.close();
     }
 }
