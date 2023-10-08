@@ -1,3 +1,5 @@
+// Alternate code for Memory Management using java
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -182,7 +184,6 @@ public class MemoryManagement {
                     System.out.println("Invalid choice. Please try again.");
             }
         } while (choice != 0);
-
         scanner.close();
     }
 }
