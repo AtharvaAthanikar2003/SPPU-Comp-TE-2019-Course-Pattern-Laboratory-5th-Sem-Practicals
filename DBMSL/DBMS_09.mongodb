@@ -1,0 +1,40 @@
+/*
+MongoDB Queries
+Design and Develop MongoDB Queries using CRUD operations. (Use CRUD operations, SAVE method, logical operators etc).
+*/
+
+A) use students
+switched to db students
+db.orderinfo.insertMany([{cust_id:123, cust_name:'abc', status:'A', price:250},{cust_id:456,
+cust_name:'def',status:'B',price:700},{cust_id:789,cust_name:'ghi',status:'A',price:2000}])
+
+1. Find the average price for each customers having status 'A'
+db.orderinfo.aggregate([{$match:{status:'A'}},{$group:{_id:"$cust_id",avgPrice: {$avg:"$price"}}}])
+
+2. Display the status of the customers whose amount/price lie between 100 and 1000
+db.orderinfo.find({price:{$gte:100, $lte:1000}},{cust_id:1,status:1})
+
+3. Display the customers information without “_id”
+db.orderinfo.find({},{_id:0})
+
+4. Create a simple index on onderinfo collection and fire the queries
+db.orderinfo.createIndex({cust_id:1})
+
+B) use movies
+switched to db movies
+db.movies.insertMany([{name:'KGF',type:'action',budget:1000000,producer:
+{name:'abc',address:'mumbai'}},{name:'RRR',type:'action',budget:500000,producer:
+{name:'def',address:'south'}},{name:'freddy',type:'action',budget:100000,producer:
+{name:'ghi',address:'delhi'}},{name:'3idiots',type:'comedy',budget:600000,producer: {name:'jkl',address:'pune'}}])
+
+1. Find the name of the movie having budget greater than 1,00,000.
+db.movies.find({budget:{$gte:100000}},{name:1,_id:0})
+
+2. Find the name of producer who lives in Pune
+db.movies.find({'producer.address':'pune'},{'producer.name':1,_id:0})
+
+3. Update the type of movie “action” to “horror”
+db.movies.updateMany({type:'action'},{$set:{type:'horror'}})
+
+4. Find all the documents produced by name “producer1” with their address
+db.movies.find({'producer.name':'abc'},{'producer.name':1,'producer.address':1,_id:0})
