@@ -1,0 +1,37 @@
+/*
+MongoDB – Aggregation and Indexing:
+Design and Develop MongoDB Queries using aggregation and indexing with suitable example using MongoDB.
+*/
+
+use database department;
+switched to db database
+db.createCollection("teacher")
+db.teacher.insertOne({"name": "abc", "dept_name": "CSE", "exp_yr": 8, "salary": 80000})
+db.teacher.insertOne({"name": "def", "dept_name": "AIDSE", "exp_yr": 6, "salary": 60000})
+db.teacher.insertOne({"name": "ghi", "dept_name": "AE", "exp_yr": 7, "salary": 70000})
+db.teacher.insertOne({"name": "jkl", "dept_name": "CSE", "exp_yr": 10, "salary": 100000})
+db.teacher.insertOne({"name": "mno", "dept_name": "AIDSE", "exp_yr": 12, "salary": 120000})
+db.teacher.insertOne({"name": "pqr", "dept_name": "AE", "exp_yr": 14, "salary": 140000})
+db.teacher.insertOne({"name": "stu", "dept_name": "CSE", "exp_yr": 9, "salary": 90000})
+db.teacher.insertOne({"name": "uvw", "dept_name": "AIDSE", "exp_yr": 11, "salary": 110000})
+db.teacher.insertOne({"name": "xyz", "dept_name": "AE", "exp_yr": 13, "salary": 130000})
+db.teacher.find().pretty()
+
+1. Display the department wise average salary:
+db.teacher.aggregate([{$group:{_id:"$dept_name", Avg_salary:{$avg:"$salary"}}}])
+
+2. Display the no. of employees working in each department:
+db.teacher.aggregate([{$group:{_id:"$dept_name", No_of_emp:{$sum:1}}}])
+
+3. Display department wise minimum salary:
+db.teacher.aggregate([{$group:{_id:"$dept_name", Min_salary:{$min:"$salary"}}}])
+
+4. Apply index and drop index:
+db.teacher.createIndex({"name":1})
+
+5. Show indexes:
+db.teacher.getIndexes();
+
+6. Drop and show indexes :
+db.teacher.dropIndex({"name":1})
+db.teacher.getIndexes();
