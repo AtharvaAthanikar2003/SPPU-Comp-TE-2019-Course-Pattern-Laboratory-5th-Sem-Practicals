@@ -1,0 +1,98 @@
+/*
+MongoDB – Map-reduces operations:
+Implement Map reduces operation with suitable example using MongoDB.
+From Versions of MongoDB Community Server 5.0 and above, the mapreduce function has depreciated. So, we can use aggregation function 
+instead of mapreduce function as it gives faster and similar results like the old function. 
+*/
+
+db.createCollection(“city”);
+use city;
+db.city.insertOne({city:"Pune", type:"Urban", state:"MH", status: "active", population:"9500000"})
+db.city.insertOne({city:"Solapur", type:"Urban", state:"MH", status: "active", population:"4400000"})
+db.city.insertOne({city:"Mumbai", type:"Urban", state:"MH", status: "passive", population:"12500000"})
+db.city.insertOne({city:"Bangalore", type:"Urban", state:"KA", status: "active", population:"12000000"})
+db.city.insertOne({city:"Mangalore", type:"Urban", state:"KA", status: "passive", population:"600000"})
+db.city.insertOne({city:"Mysore", type:"Urban", state:"KA", status: "active", population:"1100000"})
+db.city.find().pretty()
+var aggregationPipeline = [
+    {
+        $group: {
+            _id: "$state",
+            totalPopulation: { $sum: { $toInt: "$population" } },
+            cityCount: { $sum: 1 }
+        }
+    }
+];
+
+// Execute the aggregation pipeline
+var aggregationResult = db.city.aggregate(aggregationPipeline);
+
+// Print the result
+printjson(aggregationResult.toArray());
+
+// Aggregation pipeline for population city-wise
+var aggregationPipeline = [
+    {
+        $group: {
+            _id: "$city",
+            totalPopulation: { $sum: { $toInt: "$population" } }
+        }
+    }
+];
+
+// Execute the aggregation pipeline
+var aggregationResult = db.city.aggregate(aggregationPipeline);
+
+// Print the result
+printjson(aggregationResult.toArray());
+
+// Aggregation pipeline for population based on type
+var aggregationPipeline = [
+    {
+        $group: {
+            _id: "$type",
+            totalPopulation: { $sum: { $toInt: "$population" } },
+            cityCount: { $sum: 1 }
+        }
+    }
+];
+
+// Execute the aggregation pipeline
+var aggregationResult = db.city.aggregate(aggregationPipeline);
+
+// Print the result
+printjson(aggregationResult.toArray());
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+/*
+Print all types in one aggregation function :-
+
+var aggregationPipeline = [
+    {
+        $group: {
+            _id: {
+                state: "$state",
+                city: "$city",
+                type: "$type"
+            },
+            totalPopulation: { $sum: { $toInt: "$population" } },
+        }
+    },
+    {
+        $project: {
+            _id: 0, // Exclude the default _id field
+            state: "$_id.state",
+            city: "$_id.city",
+            type: "$_id.type",
+            totalPopulation: 1
+        }
+    }
+];
+
+// Execute the aggregation pipeline
+var aggregationResult = db.city.aggregate(aggregationPipeline);
+
+// Print the result
+printjson(aggregationResult.toArray());
+*/
